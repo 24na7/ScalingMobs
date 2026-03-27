@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+[[mods]]
+modId="scalingmobs"
+version="1.0"
+displayName="ScalingMobs"
+authors="24na7"
+description="ScalingMobs can adjust the difficulty of bosses and regular mobs added to the list. It works with virtually all mods and mobs."
+displayURL = "https://modrinth.com/user/24na7"
+
+[[dependencies.scalingmobs]]
+   modId="forge"
+   mandatory=true
+   versionRange="47.3.0"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.scalingmobs]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="1.20.1"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.scalingmobs]]
+modId="cloth_config"
+mandatory=true
+versionRange="11.1.136"
+ordering="NONE"
+side="BOTH"
