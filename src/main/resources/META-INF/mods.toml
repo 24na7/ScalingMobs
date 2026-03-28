@@ -12,7 +12,7 @@ displayURL = "https://modrinth.com/user/24na7"
 [[dependencies.scalingmobs]]
    modId="forge"
    mandatory=true
-   versionRange="47.3.0"
+   versionRange="47.4.10"
    ordering="NONE"
    side="BOTH"
 

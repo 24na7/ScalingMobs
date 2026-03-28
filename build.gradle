@@ -69,7 +69,7 @@ repositories {
 
 dependencies {
 
-    minecraft "net.minecraftforge:forge:1.20.1-47.3.0"
+    minecraft "net.minecraftforge:forge:1.20.1-47.4.10"
     implementation fg.deobf("curse.maven:torohealth-unofficial-931345:4831219")
     implementation fg.deobf("curse.maven:the-twilight-forest-227639:5468648")
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
