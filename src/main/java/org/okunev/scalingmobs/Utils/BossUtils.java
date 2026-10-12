@@ -33,29 +33,35 @@ public class BossUtils {
                 .count();
     }
 
-    public static void scaleBoss(LivingEntity entity, int nearbyPlayers, Map<UUID, Double> bossMaxScales) {
+    public static void scaleBoss(
+            LivingEntity entity,
+            int nearbyPlayers,
+            Map<UUID, Double> bossMaxScales
+    ) {
         UUID bossID = entity.getUUID();
 
         if (bossMaxScales.containsKey(bossID)) {
             return;
         }
 
+        nearbyPlayers = Math.max(1, nearbyPlayers);
         double maxScale = Math.sqrt(nearbyPlayers);
-
         bossMaxScales.put(bossID, maxScale);
+        AttributeInstance healthAttr =
+                entity.getAttribute(Attributes.MAX_HEALTH);
+        AttributeInstance damageAttr =
+                entity.getAttribute(Attributes.ATTACK_DAMAGE);
+        AttributeInstance armorAttr =
+                entity.getAttribute(Attributes.ARMOR);
 
-        AttributeInstance healthAttr = entity.getAttribute(Attributes.MAX_HEALTH);
-        AttributeInstance damageAttr = entity.getAttribute(Attributes.ATTACK_DAMAGE);
-        AttributeInstance armorAttr = entity.getAttribute(Attributes.ARMOR);
-
-        if (healthAttr == null || damageAttr == null) return;
-
+        if (healthAttr == null) return;
         double newHealth = healthAttr.getBaseValue() * maxScale;
         healthAttr.setBaseValue(newHealth);
         entity.setHealth((float) newHealth);
-
-        double newDamage = damageAttr.getBaseValue() * maxScale;
-        damageAttr.setBaseValue(newDamage);
+        if (damageAttr != null) {
+            double newDamage = damageAttr.getBaseValue() * maxScale;
+            damageAttr.setBaseValue(newDamage);
+        }
 
         if (armorAttr != null) {
             double baseArmor = armorAttr.getBaseValue();

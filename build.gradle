@@ -69,11 +69,15 @@ repositories {
 
 dependencies {
 
-    minecraft "net.minecraftforge:forge:1.20.1-47.4.10"
+    minecraft "net.minecraftforge:forge:1.20.1-47.4.23"
     implementation fg.deobf("curse.maven:torohealth-unofficial-931345:4831219")
     implementation fg.deobf("curse.maven:the-twilight-forest-227639:5468648")
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
 
+    // in test for upd 1.1
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:8246047")
+    implementation fg.deobf("curse.maven:curios-309927:6418456")
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:8095554")
 }
 
 tasks.named('processResources', ProcessResources).configure {
