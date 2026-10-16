@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.okunev.scalingmobs.Utils.BossUtils;
 
@@ -36,14 +37,23 @@ public class BossScaler {
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.level instanceof ServerLevel world)) return;
 
+        MinecraftServer server = world.getServer();
+        if (server == null) return;
+
         Iterator<UUID> iterator = activeBosses.iterator();
 
         while (iterator.hasNext()) {
             UUID bossID = iterator.next();
+            LivingEntity livingEntity = null;
+            for (ServerLevel level : server.getAllLevels()) {
+                Entity found = level.getEntity(bossID);
+                if (found instanceof LivingEntity le) {
+                    livingEntity = le;
+                    break;
+                }
+            }
 
-            Entity entity = world.getEntity(bossID);
-
-            if (!(entity instanceof LivingEntity livingEntity)) {
+            if (livingEntity == null) {
                 iterator.remove();
                 bossMaxScales.remove(bossID);
                 continue;
